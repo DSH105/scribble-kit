@@ -1,0 +1,30 @@
+{
+  "name": "scribble-kit",
+  "version": "0.1.0",
+  "authors": [
+    "Jason <jason@dsh105.com>"
+  ],
+  "description": "A personal collection of Sass, JS and other web-related utilities.",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/DSH105/scribble-kit.git"
+  },
+  "main": [
+    "dist/js/scribble-kit.js",
+    "dist/styles/sass/**/*.scss",
+    "dist/styles/css/scribble-kit.css"
+  ],
+  "moduleType": [
+    "node"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "jquery": "~2.1.3"
+  }
+}
