@@ -1,3 +1,0 @@
-@function restrict($value, $min, $max) {
-  @return if ($value < $min, $min, if ($value > $max, $max, $value));
-}

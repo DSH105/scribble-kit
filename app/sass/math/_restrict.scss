@@ -1,4 +1,4 @@
-// RESTRICT A GIVEN VALUE
+// FUNCTION/MIXIN: APPLY VALUE RESTRICTIONS
 
 @function restrict($value, $min, $max) {
   @return if ($value < $min, $min, if ($value > $max, $max, $value));

@@ -1,0 +1,49 @@
+// FUNCTION/MIXIN: VENDOR PREFIXES
+
+$vendor-prefixes: (
+        '-webkit-',
+        '-moz-',
+        '-o-',
+        '-ms-',
+        '',
+);
+
+@mixin vendor($property, $value) {
+  @each $x in $value {
+    @each $vendor in $vendor-prefixes {
+      #{$vendor}#{$property}: #{$x};
+    }
+  }
+}
+
+@mixin keyframes($animations) {
+  @each $x in $animations {
+    @-webkit-keyframes #{$x} {
+      @content
+    }
+    @-moz-keyframes #{$x} {
+      @content
+    }
+    @-o-keyframes #{$x} {
+      @content
+    }
+    @-ms-keyframes #{$x} {
+      @content
+    }
+    @keyframes #{$x} {
+      @content
+    }
+  }
+}
+
+@mixin animate($animations...) {
+  @include vendor("animation", $animations);
+}
+
+@mixin transform($transformations...) {
+  @include vendor("transform", $transformations);
+}
+
+@mixin rotate($deg) {
+  @include transform("rotate(#{$deg}deg)");
+}
