@@ -1,0 +1,38 @@
+// Dependencies:
+// @import "strip-unit"
+
+@function convert-to($unit, $value: 16px) {
+  $valueUnit: unit($value);
+  $intValue: strip-unit($value);
+  @if $valueUnit == $unit {
+    @return $intValue;
+  }
+
+  @return $intValue / 16;
+}
+
+// http://hugogiraudel.com/2013/03/18/ultimate-rem-mixin/
+@mixin rempx($property, $value: 16px) {
+  $unit: unit($value);
+
+  @if not ($unit == 'px' or $unit == 'rem') {
+    @warn 'Provided unit #{$unit} must be either "rem" or "px"';
+  }
+
+  $px: ();
+  $rem: ();
+
+  @if ($value == 0 or $value == auto) {
+    $px: $value;
+  } @else {
+    $px: if($unit == 'px', $value, convert-to('rem', $value) * 1rem);
+    $rem: if($unit == 'rem', $value, convert-to('px', $value) * 1px);
+  }
+
+  @if $px == $rem {
+    #{$property}: $px;
+  } @else {
+    #{$property}: #{$px};
+    #{$property}: #{$rem};
+  }
+}

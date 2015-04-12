@@ -3,6 +3,9 @@ var config = {
     dist: 'dist',
     dev: 'dev',
     styles: 'styles',
+    sass: 'sass',
+    css: 'css',
+    fonts: 'fonts',
     scripts: 'scripts',
     grunt_tasks: 'grunt-tasks'
 };
@@ -32,7 +35,7 @@ module.exports = function(grunt) {
                     '**/*.sass',
                     '**/*.scss'
                 ],
-                tasks: ['sass']
+                tasks: ['clean:css', 'sass']
             },
             dist: {
                 files: [
@@ -58,18 +61,21 @@ module.exports = function(grunt) {
                 },
                 files: [{
                     expand: true,
-                    cwd: '<%= config.app %>/<%= config.styles %>/sass',
+                    cwd: '<%= config.app %>/<%= config.sass %>',
                     src: [
                         '**/*.sass',
                         '**/*.scss'
                     ],
-                    dest: '<%= config.app %>/<%= config.styles %>/css',
+                    dest: '<%= config.app %>/<%= config.css %>',
                     ext: '.css'
                 }]
             }
         },
 
         clean: {
+            css: {
+                src: ['<%= config.app %>/<%= config.css %>']
+            },
             dist: {
                 src: ['<%= config.dist %>']
             },
@@ -79,7 +85,7 @@ module.exports = function(grunt) {
                     cwd: '<%= config.app %>',
                     src: [
                         '**/vendor/components/*',
-                        '<%= config.styles %>/fonts'
+                        '<%= config.fonts %>'
                     ]
                 }]
             }
@@ -91,8 +97,8 @@ module.exports = function(grunt) {
                 dest: '<%= config.dist %>/<%= config.scripts %>/<%= pkg.name %>.js'
             },
             styles: {
-                src: ['<%= config.app %>/<%= config.styles %>/css/**/*.css', '!<%= config.app %>/<%= config.styles %>/css/vendor/**/*.css'],
-                dest: '<%= config.dist %>/<%= config.styles %>/css/<%= pkg.name %>.css'
+                src: ['<%= config.app %>/<%= config.css %>/**/*.css', '!<%= config.app %>/<%= config.css %>/vendor/**/*.css'],
+                dest: '<%= config.dist %>/<%= config.css %>/<%= pkg.name %>.css'
             }
         },
 
@@ -107,8 +113,8 @@ module.exports = function(grunt) {
                             '**/*.txt',
                             '<%= config.scripts %>/vendor/**/*.js',
                             '!<%= config.scripts %>/vendor/components/**/*.js',
-                            '<%= config.styles %>/css/vendor/**/*.css',
-                            '!<%= config.styles %>/css/vendor/components/**/*.css'
+                            '<%= config.css %>/vendor/**/*.css',
+                            '!<%= config.css %>/vendor/components/**/*.css'
                         ],
                         dest: '<%= config.dist %>'
                     }
@@ -146,9 +152,9 @@ module.exports = function(grunt) {
             dist: {
                 files: [{
                     expand: true,
-                    cwd: '<%= config.dist %>/<%= config.styles %>/css',
+                    cwd: '<%= config.dist %>/<%= config.css %>',
                     src: ['**/*.css', '!**/*.min.css'],
-                    dest: '<%= config.dist %>/<%= config.styles %>/css',
+                    dest: '<%= config.dist %>/<%= config.css %>',
                     ext: '.min.css'
                 }]
             }
@@ -210,6 +216,9 @@ module.exports = function(grunt) {
     grunt.registerTask('prepare-dist', [
         // clean the directory
         'clean:dist',
+
+        // convert all sass files to css
+        'sass',
 
         // copy over bower components
         //'bower',

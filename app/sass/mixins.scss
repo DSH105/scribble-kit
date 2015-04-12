@@ -12,6 +12,22 @@ $imported-modules: () !default;
   }
 }
 
-@function restrict($value, $min, $max) {
-  @return if ($value < $min, $min, if ($value > $max, $max, $value));
+
+@mixin font-size($sizeValue: 1.3) {
+  font-size: $sizeValue * 10 * 1px;
+  font-size: $sizeValue * 1rem;
+}
+
+
+@mixin reset-mp() {
+  margin: 0;
+  padding: 0;
+}
+
+
+// http://nicolasgallagher.com/another-css-image-replacement-technique/
+@mixin hide-text() {
+  font: 0/0 a;
+  text-shadow: none;
+  color: transparent;
 }

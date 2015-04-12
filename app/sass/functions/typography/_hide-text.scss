@@ -1,0 +1,8 @@
+// HIDE TEXT
+// http://nicolasgallagher.com/another-css-image-replacement-technique/
+
+@mixin hide-text() {
+  font: 0/0 a;
+  text-shadow: none;
+  color: transparent;
+}

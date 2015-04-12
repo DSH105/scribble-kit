@@ -1,7 +1,7 @@
 {
   "name": "scribble-kit",
   "version": "0.1.0",
-  "description": "A collection of Sass, JS and other web-related utilities I use in my projects.",
+  "description": "A personal collection of Sass, JS and other web-related utilities.",
   "author": "Jason <jason@dsh105.com>",
   "repository": {
     "type": "git",
