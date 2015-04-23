@@ -1,10 +1,3 @@
-/* spyder-net - v0.1.0
- * 
- * Copyright (c) Jason <jason@dsh105.com> 2015
- * 
- * A collection of Sass, JS and other web-related utilities I use in my projects.
- */
-
 // http://stackoverflow.com/questions/21918202
 
 module.exports = function(grunt) {
